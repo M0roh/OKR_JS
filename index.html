@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Контрольная</title>
+</head>
+<body>
+    <h1>Вариант 3</h1>
+    <h2 id="output"></h2>
+
+    <!-- Task 1 -->
+    <section>
+        <h2>Задание 1</h2>
+        <span>B) filter()</span>
+    </section>
+
+<script>
+
+    // task 2
+    console.log("Task 2")
+    for (let i = 1; i <= 15; i++) {
+        if (i % 2 == 1) {
+            console.log(`${i} -> ${i**2}`)
+        }
+    }
+
+    // task3
+    console.log("Task 3")
+    let playersScores = [
+        { name: '123', score: 5 },
+        { name: '456', score: 89 },
+        { name: '789', score: 15 },
+        { name: '234', score: 2 },
+        { name: '567', score: 4 },
+    ];
+    function getMaxScore(arr) {
+        if (arr.length < 1) {
+            throw ReferenceError("Array doesn't contains players.");
+        }
+        else if (arr.length == 1) {
+            return arr[0].name;
+        }
+        else {
+            let maxScore = arr[0];
+            arr.forEach(player => {
+                if (maxScore.score < player.score) {
+                    maxScore = player;
+                }
+            });
+            return maxScore.name
+        }
+    }
+    console.log(getMaxScore(playersScores));
+
+    // task4
+    console.log("Task 4")
+    function groupByModulo3(arr) {
+        return arr.reduce((acc, num) => {
+            const key = num % 3;
+            if (!acc[key]) acc[key] = [];
+            acc[key].push(num);
+            return acc;
+        }, {});
+    }
+    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const grouped = groupByModulo3(numbers);
+    console.log(grouped);
+
+    // task5
+    const output = document.getElementById('output');
+
+    document.addEventListener('keydown', (event) => {
+        const key = event.key;
+        
+        if (key >= '0' && key <= '9') return;
+        
+        if (key === ' ') {
+            if (output.textContent.slice(-1) !== ' ') {
+                output.textContent += ' ';
+            }
+            return; 
+        }
+
+        if (key.length === 1) {
+            output.textContent += key.toUpperCase();
+        }
+    });
+</script>
+
+</body>
+</html>
